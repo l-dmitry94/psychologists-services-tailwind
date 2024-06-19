@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import clsx from 'clsx';
 
 import Navigation from '../Navigation';
 import Auth from '../Auth';
@@ -6,17 +7,17 @@ import Auth from '../Auth';
 import { icons } from 'assets/icons';
 
 import { INavigation } from '../Navigation/Navigation.types';
-import clsx from 'clsx';
 
 const BurgerMenu: FC<INavigation> = ({ items }) => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
+    const toggleMenu = () => {
+        setMenuIsOpen(!menuIsOpen);
+    };
+
     return (
-        <div onClick={() => setMenuIsOpen(!menuIsOpen)}>
-            <button
-                onClick={() => setMenuIsOpen(!menuIsOpen)}
-                className="flex items-center justify-center"
-            >
+        <div onClick={toggleMenu}>
+            <button onClick={toggleMenu} className="flex items-center justify-center">
                 <svg className="h-6 w-6 fill-black-100">
                     <use href={`${icons}#icon-burger`}></use>
                 </svg>
@@ -34,7 +35,7 @@ const BurgerMenu: FC<INavigation> = ({ items }) => {
 
             <div
                 className={clsx(
-                    'fixed right-0 top-0 h-screen w-screen transition-transform ease-linear',
+                    'fixed right-0 top-0 h-full w-full transition-transform ease-linear',
                     {
                         'translate-x-full': !menuIsOpen,
                         'translate-x-0': menuIsOpen,
