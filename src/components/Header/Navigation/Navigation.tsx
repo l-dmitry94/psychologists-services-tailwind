@@ -15,7 +15,7 @@ const Navigation: FC<INavigation> = ({ items }) => {
                             clsx(
                                 'relative leading-tight tracking-[-0.01em] text-gray-100 xl:text-black-100',
                                 {
-                                    'after:absolute after:bottom-[-12px] after:left-2/4 after:h-2 after:w-2 after:-translate-x-2/4 after:rounded-full after:bg-primary after:content-[""]':
+                                    'after:absolute after:h-2 after:w-2 after:rounded-full after:content-[""] xs:max-xl:after:-right-3 xs:max-xl:after:top-2/4 xs:max-xl:after:-translate-y-2/4 xs:max-xl:after:bg-gray-100 xl:after:bottom-[-12px] xl:after:left-2/4 xl:after:-translate-x-2/4 xl:after:bg-primary':
                                         isActive,
                                 }
                             )
