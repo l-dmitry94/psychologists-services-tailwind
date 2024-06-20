@@ -8,6 +8,8 @@ export default {
                     primary: {
                         DEFAULT: '#54be96',
                         dark: '#36a379',
+                        question: '#4535af',
+                        users: '#fbc75e',
                     },
 
                     gray: {

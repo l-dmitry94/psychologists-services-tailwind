@@ -6,9 +6,16 @@ import BurgerMenu from './BurgerMenu';
 
 import navItems from './navigation.json';
 import { useMedia } from 'hooks/useMedia';
+import { useEffect } from 'react';
 
 const Header = () => {
     const { isDesktop } = useMedia();
+
+    useEffect(() => {
+        if (isDesktop) {
+            document.body.style.overflow = 'visible';
+        }
+    }, [isDesktop]);
 
     return (
         <div className="relative border-b border-black-100/10 py-6">
