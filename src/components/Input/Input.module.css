@@ -1,0 +1,7 @@
+.input {
+    @apply focus:outline-none h-[52px] w-full rounded-xl border-[1px] border-black-100/10 pl-[18px] pr-14 leading-tight placeholder-black-100 outline-transparent focus:border-[1px] focus:border-black-100/10;
+}
+
+.error {
+    @apply mt-1 text-red-500 font-medium leading-tight
+}

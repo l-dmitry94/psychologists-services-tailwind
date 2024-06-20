@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import Navigation from '../Navigation';
@@ -14,6 +14,12 @@ const BurgerMenu: FC<INavigation> = ({ items }) => {
     const toggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
     };
+
+    useEffect(() => {
+        if (menuIsOpen) {
+            document.body.style.overflow = 'hidden';
+        } else document.body.style.overflow = 'visible';
+    }, [menuIsOpen]);
 
     return (
         <div onClick={toggleMenu}>

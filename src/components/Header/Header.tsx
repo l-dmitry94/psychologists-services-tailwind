@@ -2,10 +2,10 @@ import Container from 'components/Container';
 import Logo from './Logo';
 import Navigation from './Navigation';
 import Auth from './Auth';
+import BurgerMenu from './BurgerMenu';
 
 import navItems from './navigation.json';
 import { useMedia } from 'hooks/useMedia';
-import BurgerMenu from './BurgerMenu';
 
 const Header = () => {
     const { isDesktop } = useMedia();
