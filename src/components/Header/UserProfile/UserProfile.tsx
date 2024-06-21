@@ -5,12 +5,9 @@ import Button, { ButtonType } from 'components/Button';
 import { icons } from 'assets/icons';
 import { useAppDispatch } from 'hooks/hooks';
 import { removeUser } from '../../../redux/auth/auth.slice';
+import { IUserProfile } from './UserProfile.types';
 
-interface UserProfileProps {
-    name: string;
-}
-
-const UserProfile: FC<UserProfileProps> = ({ name }) => {
+const UserProfile: FC<IUserProfile> = ({ name }) => {
     const dispatch = useAppDispatch();
 
     const logOut = () => {
