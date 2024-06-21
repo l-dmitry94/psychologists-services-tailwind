@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import Button, { ButtonType } from 'components/Button';
 import Modal from 'components/Modal';
 import LoginModal from './LoginModal';
 import RegistrationModal from './RegistrationModal';
+import { ICloseBurgerMenu } from './Auth.types';
 
-const Auth = () => {
+const Auth: FC<ICloseBurgerMenu> = ({ closeBurgerMenu }) => {
     const [loginModalIsOpen, setLoginModalIsOpen] = useState<boolean>(false);
     const [registrationModalIsOpen, setRegistrationModalIsOpen] = useState<boolean>(false);
 
@@ -26,7 +27,10 @@ const Auth = () => {
                 title="Log In"
                 description="Welcome back! Please enter your credentials to access your account and continue your search for a psychologist."
             >
-                <LoginModal />
+                <LoginModal
+                    closeModal={() => setLoginModalIsOpen(false)}
+                    closeBurgerMenu={closeBurgerMenu}
+                />
             </Modal>
 
             <Modal
@@ -35,7 +39,10 @@ const Auth = () => {
                 title="Registration"
                 description="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information."
             >
-                <RegistrationModal />
+                <RegistrationModal
+                    closeModal={() => setRegistrationModalIsOpen(false)}
+                    closeBurgerMenu={closeBurgerMenu}
+                />
             </Modal>
         </>
     );

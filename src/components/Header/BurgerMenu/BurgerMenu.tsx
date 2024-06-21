@@ -5,11 +5,14 @@ import Navigation from '../Navigation';
 import Auth from '../Auth';
 
 import { icons } from 'assets/icons';
+import useAuth from 'hooks/useAuth';
 
 import { INavigation } from '../Navigation/Navigation.types';
+import UserProfile from '../UserProfile';
 
 const BurgerMenu: FC<INavigation> = ({ items }) => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
+    const { name } = useAuth();
 
     const toggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
@@ -53,7 +56,11 @@ const BurgerMenu: FC<INavigation> = ({ items }) => {
                     className="absolute right-0 top-0 flex h-full w-2/3 flex-col justify-between bg-primary p-5"
                 >
                     <Navigation items={items} />
-                    <Auth />
+                    {name ? (
+                        <UserProfile name={name} />
+                    ) : (
+                        <Auth closeBurgerMenu={() => setMenuIsOpen(false)} />
+                    )}
                 </div>
             </div>
         </div>

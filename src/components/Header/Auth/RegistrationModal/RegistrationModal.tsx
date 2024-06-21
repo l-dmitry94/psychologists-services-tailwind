@@ -1,13 +1,20 @@
+import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import Input from 'components/Input';
 import Button, { ButtonType } from 'components/Button';
 
+import { useAppDispatch } from 'hooks/hooks';
 import { validationSchema } from './validationSchema';
-import { IRegistrationModal } from '../Auth.types';
+import FirebaseAuth from '../FirebaseAuth';
 
-const RegistrationModal = () => {
+import { ICloseModal, IRegistrationModal } from '../Auth.types';
+
+const RegistrationModal: FC<ICloseModal> = ({ closeModal, closeBurgerMenu }) => {
+    const dispatch = useAppDispatch();
+
     const {
         register,
         handleSubmit,
@@ -16,8 +23,20 @@ const RegistrationModal = () => {
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmit: SubmitHandler<IRegistrationModal> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<IRegistrationModal> = async ({ email, password, name }) => {
+        const trimmedEmail = email.trim();
+        const trimmedPassword = password.trim();
+        const trimmedName = name.trim();
+
+        await FirebaseAuth({
+            operation: createUserWithEmailAndPassword,
+            trimmedEmail,
+            trimmedPassword,
+            closeModal,
+            closeBurgerMenu,
+            dispatch,
+            trimmedName,
+        });
     };
 
     return (
